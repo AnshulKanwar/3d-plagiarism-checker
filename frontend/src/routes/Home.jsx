@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import Container from "../components/Container";
 import axios from "axios";
 
 const Home = () => {
   const [originalFile, setOriginalFile] = useState(null);
   const [secondFile, setSecondFile] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     const response = await axios.post(
       "http://127.0.0.1:5000/",
       {
@@ -28,9 +31,11 @@ const Home = () => {
 
     if (response.data.error) {
       setError(response.data.error);
+      setLoading(false)
       return;
     }
     const { similarity } = response.data;
+    setLoading(false)
 
     navigate(`/result/${similarity}`);
   };
@@ -50,6 +55,9 @@ const Home = () => {
   return (
     <div>
       <main className="max-w-xl mx-auto mt-48">
+        <div className="flex justify-center">
+          <ClipLoader loading={loading} />
+        </div>
         <div className="text-center text-slate-600">
           Upload two .obj files below and our algorithm will tell you if the 3d
           Model has been plagiarised
