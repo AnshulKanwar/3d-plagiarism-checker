@@ -35,8 +35,4 @@ def similarity():
         return jsonify(error="Obj file not provided")
     # os.system("blender -b -P script.py")
     # result = ml.delay().get()
-<<<<<<< HEAD
     return jsonify(similarity=1)
-=======
-    return jsonify(similarity=0.5)
->>>>>>> c3d2f2b9f05d49917b9e36298c6e9a7bb12f0c71
