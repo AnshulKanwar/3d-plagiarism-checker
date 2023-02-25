@@ -9,7 +9,10 @@ const Result = () => {
     <main className="max-w-xl mx-auto mt-48">
       <Container>
         <div className="text-center">
-          <h1 className="text-red-500 text-2xl font-bold mb-5">Plagiarised</h1>
+          {similarity >= 0.70 ?
+          <h1 className="text-red-500 text-2xl font-bold mb-5">Plagiarised</h1> :
+          <h1 className="text-green-500 text-2xl font-bold mb-5">Not Plagiarised</h1>
+          }
           <p>
             Both the models are <u>{similarity * 100}%</u> similar
           </p>
