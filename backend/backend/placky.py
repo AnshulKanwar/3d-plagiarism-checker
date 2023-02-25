@@ -23,4 +23,4 @@ def similarity():
     if 'file1' not in request.files and 'file2' not in request.files:
         return jsonify(error="Obj file not provided")
     # result = ml.delay().get()
-    return jsonify(similarity=0.7)
+    return jsonify(similarity=0.5)
