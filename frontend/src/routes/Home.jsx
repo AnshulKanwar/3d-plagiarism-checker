@@ -1,19 +1,23 @@
-import Navbar from "./components/Navbar";
-import Inp from "./Inp";
+import { useNavigate } from "react-router-dom";
+import Container from "../components/Container";
+import Navbar from "../components/Navbar";
 
-const App = () => {
+const Home = () => {
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate("/result")
   };
 
   return (
     <div>
-      <Navbar />
       <main className="max-w-xl mx-auto mt-48">
         <div className="text-center text-slate-600">
-          Upload two .obj files below and our algorithm will tell you if the 3d Model has been plagiarised
+          Upload two .obj files below and our algorithm will tell you if the 3d
+          Model has been plagiarised
         </div>
-        <div className="p-10 mt-8 bg-white rounded-lg">
+        <Container>
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
             <label>Original File: </label>
             <input type="file" name="file1" />
@@ -26,10 +30,10 @@ const App = () => {
               Check for Plagiarism
             </button>
           </form>
-        </div>
+        </Container>
       </main>
     </div>
   );
 };
 
-export default App;
+export default Home;
