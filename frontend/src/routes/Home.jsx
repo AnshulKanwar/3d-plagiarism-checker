@@ -6,6 +6,7 @@ import axios from "axios";
 const Home = () => {
   const [originalFile, setOriginalFile] = useState(null);
   const [secondFile, setSecondFile] = useState(null);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -25,9 +26,13 @@ const Home = () => {
       }
     );
 
-    const { similarity } = response.data
+    if (response.data.error) {
+      setError(response.data.error);
+      return;
+    }
+    const { similarity } = response.data;
 
-    navigate(`/result/${similarity}`)
+    navigate(`/result/${similarity}`);
   };
 
   const handleOriginalFile = (e) => {
@@ -50,6 +55,11 @@ const Home = () => {
           Model has been plagiarised
         </div>
         <Container>
+          {error && (
+            <p className="text-center p-2 mb-5 bg-red-100 border-2 border-red-400 rounded-md">
+              {error}
+            </p>
+          )}
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
             <label>Original File: </label>
             <input type="file" onChange={handleOriginalFile} />
