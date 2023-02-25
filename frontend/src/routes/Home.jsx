@@ -1,13 +1,45 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "../components/Container";
-import Navbar from "../components/Navbar";
+import axios from "axios";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const [originalFile, setOriginalFile] = useState(null);
+  const [secondFile, setSecondFile] = useState(null);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/result")
+
+    const response = await axios.post(
+      "http://127.0.0.1:5000/",
+      {
+        file1: originalFile,
+        file2: secondFile,
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    const { similarity } = response.data
+
+    navigate(`/result/${similarity}`)
+  };
+
+  const handleOriginalFile = (e) => {
+    if (e.target.files) {
+      setOriginalFile(e.target.files[0]);
+    }
+  };
+
+  const handleSecondFile = (e) => {
+    if (e.target.files) {
+      setSecondFile(e.target.files[0]);
+    }
   };
 
   return (
@@ -20,9 +52,9 @@ const Home = () => {
         <Container>
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
             <label>Original File: </label>
-            <input type="file" name="file1" />
+            <input type="file" onChange={handleOriginalFile} />
             <label>Second File: </label>
-            <input type="file" name="file2" />
+            <input type="file" onChange={handleSecondFile} />
             <button
               type="submit"
               className="col-span-2 bg-blue-600 text-white rounded-md p-3"
