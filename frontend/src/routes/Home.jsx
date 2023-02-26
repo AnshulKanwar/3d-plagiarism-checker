@@ -37,7 +37,7 @@ const Home = () => {
     const { similarity } = response.data;
     setLoading(false)
 
-    navigate(`/result/${similarity}`);
+    navigate(`/result`, { state: { similarity }});
   };
 
   const handleOriginalFile = (e) => {
@@ -54,7 +54,7 @@ const Home = () => {
 
   return (
     <div>
-      <main className="max-w-xl mx-auto mt-48">
+      <main className="max-w-xl mx-auto mt-36">
         <div className="flex justify-center">
           <ClipLoader loading={loading} />
         </div>

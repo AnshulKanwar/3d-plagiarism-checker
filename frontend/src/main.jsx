@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/result/:similarity",
+        path: "/result",
         element: <Result />,
       },
       {

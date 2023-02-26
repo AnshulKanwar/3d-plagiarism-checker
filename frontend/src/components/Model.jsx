@@ -12,7 +12,7 @@ const Model = ({ model }) => {
 
 const Scene = ({ model }) => {
   return (
-    <Canvas style={{ height: 400, width: 400 }}>
+    <Canvas style={{ height: "100%", width: "100%" }}>
       <color attach="background" args={["black"]} />
       <Suspense fallback={null}>
         <ambientLight intensity={0.1}/>
