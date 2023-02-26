@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ClipLoader } from "react-spinners"
+import { BounceLoader } from "react-spinners"
 import Container from "../components/Container";
 import axios from "axios";
 
@@ -17,6 +17,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("making post")
+    setLoading(true)
     const response = await axios.post(
       "http://127.0.0.1:5000/",
       {
@@ -40,7 +41,7 @@ const Home = () => {
     console.log(response)
     const { similarity,image_gen } = response.data;
     console.log(similarity)
-
+    setLoading(false)
     navigate(`/result`, { state: { similarity,image_gen }});
   };
 
@@ -72,7 +73,7 @@ const Home = () => {
     <div>
       <main className="max-w-xl mx-auto my-20">
         <div className="flex justify-center">
-          <ClipLoader loading={loading} />
+          <BounceLoader loading={loading} color="#2563EB"/>
         </div>
         <div className="text-center text-slate-600">
           Upload two .obj files below and our algorithm will tell you if the 3d
