@@ -14,8 +14,8 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("making post");
     setLoading(true);
+
     const response = await axios.post(
       "http://127.0.0.1:5000/",
       {
@@ -54,13 +54,19 @@ const Home = () => {
   return (
     <div>
       <main className="max-w-xl mx-auto my-16">
-        <div className="flex justify-center">
-          <BounceLoader loading={loading} color="#2563EB" />
-        </div>
         <div className="text-center mb-10">
-          <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-400">Placky</h1>
+          <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-400">
+            Placky
+          </h1>
           <h2 className="text-lg">Plagiarism Checker for 3D Objects</h2>
         </div>
+        {loading && (
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="grid place-items-center h-full bg-black/[.6]">
+              <BounceLoader loading={loading} color="#b49bfc" />
+            </div>
+          </div>
+        )}
         <div className="text-center text-slate-600">
           Upload two .obj files below and our algorithm will tell you if the 3d
           Model has been plagiarized

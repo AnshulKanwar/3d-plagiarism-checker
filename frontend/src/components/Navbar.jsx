@@ -14,10 +14,10 @@ const Navbar = () => {
       </div>
       <div className="flex gap-10">
         <span>
-          <NavLink to="/working">How we did it?</NavLink>
+          <NavLink to="/working" className="hover:underline">How we did it?</NavLink>
         </span>
         <span>
-          Made with ❤️ by <em>bit.fy</em>
+          Made with ❤️ by bit.fy
         </span>
       </div>
     </div>
