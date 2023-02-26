@@ -2,7 +2,7 @@ import bpy
 import math
 # import open3d as o3d
 import numpy as np
-
+# print(open3d.__version__)
 def align_camera(camera, dir):    
     distance = 2
     if dir == "top":
@@ -41,14 +41,8 @@ def main(model,path):
         bpy.ops.object.delete()
 
     obj = bpy.ops.import_scene.obj(filepath=model)
-    # mesh = o3d.io.read_triangle_mesh(obj1)
-    # vertices = np.asarray(mesh.vertices)
-    # centroid = np.mean(vertices, axis=0)
-    # vertices -= centroid
-    # max_distance = np.max(np.linalg.norm(vertices, axis=1))
-    # vertices /= max_distance
-    # mesh.vertices = o3d.utility.Vector3dVector(vertices)
-    # o3d.io.write_triangle_mesh("model1.obj", mesh)
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='BOUNDS')
     camera = bpy.data.objects['Camera']
     
     for dir in ["top", "bottom", "front", "back", "right", "left"]:

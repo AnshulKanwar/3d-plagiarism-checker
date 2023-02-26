@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
 import Container from "../components/Container";
 import axios from "axios";
 
 const Home = () => {
   const [originalFile, setOriginalFile] = useState(null);
   const [secondFile, setSecondFile] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [orignalMtl, setOrignalMtl] = useState(null);
+  const [secondMtl, setSecondMtl] = useState(null);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -15,12 +15,13 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setLoading(true);
     const response = await axios.post(
       "http://127.0.0.1:5000/",
       {
         file1: originalFile,
         file2: secondFile,
+        mtl1: orignalMtl,
+        mtl2: secondMtl,
       },
       {
         headers: {
@@ -31,11 +32,9 @@ const Home = () => {
 
     if (response.data.error) {
       setError(response.data.error);
-      setLoading(false)
       return;
     }
     const { similarity } = response.data;
-    setLoading(false)
 
     navigate(`/result`, { state: { similarity }});
   };
@@ -49,6 +48,18 @@ const Home = () => {
   const handleSecondFile = (e) => {
     if (e.target.files) {
       setSecondFile(e.target.files[0]);
+    }
+  };
+
+  const handleOrignalMtl = (e) => {
+    if (e.target.files) {
+      setOrignalMtl(e.target.files[0]);
+    }
+  };
+
+  const handleSecondMtl = (e) => {
+    if (e.target.files) {
+      setSecondMtl(e.target.files[0]);
     }
   };
 
@@ -73,6 +84,10 @@ const Home = () => {
             <input type="file" onChange={handleOriginalFile} />
             <label>Second File: </label>
             <input type="file" onChange={handleSecondFile} />
+            <label>Orignal mtl:</label>
+            <input type="file" onChange={handleOrignalMtl}></input>
+            <label>Second Mtl: </label>
+            <input type= "file" onChange={handleSecondMtl} />
             <button
               type="submit"
               className="col-span-2 bg-blue-600 text-white rounded-md p-3"

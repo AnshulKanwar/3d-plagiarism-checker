@@ -21,10 +21,14 @@ def allowed_file(filename):
 
 @bp.route("/", methods=('POST', ))
 def similarity():
+    print(request.files)
     if not os.path.exists('uploads'):
         os.makedirs('uploads')
     file = request.files['file1']
+    # mtl1 = request.files['mtl1']
+    # mtl2 = request.files['mtl2']
     new_file_name="model1.obj"
+    # new_mtl_name="model1.mtl"
     file.save('uploads/' + new_file_name)
     file = request.files['file2']
     new_file_name="model2.obj"

@@ -51,7 +51,10 @@ def ml():
                 index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
                 search_params = dict(checks = 50)
                 flann = cv.FlannBasedMatcher(index_params, search_params)
-                matches = flann.knnMatch(des1,des2,k=2)
+                try:
+                    matches = flann.knnMatch(des1,des2,k=2)
+                except:
+                    continue
                 # store all the good matches as per Lowe's ratio test.
                 good = []
                 for m,n in matches:
@@ -85,7 +88,7 @@ def ml():
                     # plt.imshow(img3, 'gray'),plt.show()
                     # print(save_as_name)
                     # print(type(save_as_name))
-                    cv.imwrite(save_as_name+'.jpg', img3)
+                    cv.imwrite('./results/'+save_as_name+'.jpg', img3)
                     index=index+1
                     save_as_name=str(index)
                     total_count=total_count+1
