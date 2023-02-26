@@ -38,10 +38,10 @@ const Home = () => {
     }
 
     console.log(response)
-    const { similarity } = response.data;
+    const { similarity,image_gen } = response.data;
     console.log(similarity)
 
-    navigate(`/result`, { state: { similarity }});
+    navigate(`/result`, { state: { similarity,image_gen }});
   };
 
   const handleOriginalFile = (e) => {

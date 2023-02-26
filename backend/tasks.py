@@ -7,6 +7,7 @@ from celery import Celery
 app = Celery('tasks', broker='amqp://guest:guest@localhost:5672//', backend='rpc://')
 @app.task
 def ml():
+    image_gen=0
     MIN_MATCH_COUNT = 25
     total_count=0
     # assign directory
@@ -62,6 +63,7 @@ def ml():
                             good.append(m)
                 a=0
                 if len(good)>=MIN_MATCH_COUNT:
+                    image_gen=1
                     src_pts = np.float32([ kp1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
                     dst_pts = np.float32([ kp2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
                     M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC,5.0)
@@ -94,4 +96,4 @@ def ml():
                     total_count=total_count+1
     result=total_count/files_scanned
     # print(f'{total_count}/{files_scanned}')
-    return result
+    return result,image_gen

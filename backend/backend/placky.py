@@ -28,8 +28,8 @@ def similarity():
     if 'file1' not in request.files and 'file2' not in request.files:
         return jsonify(error="Obj file not provided")
     os.system("blender -b -P uploads/script.py")
-    result = ml.delay().get()
-    return jsonify(similarity=result)
+    result,image_gen = ml.delay().get()
+    return jsonify(similarity=result,image_gen=image_gen)
 
 @bp.route('/uploads/<filename>')
 def download_models(filename):

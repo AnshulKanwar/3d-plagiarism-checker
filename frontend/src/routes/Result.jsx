@@ -3,7 +3,7 @@ import Container from "../components/Container";
 import Scene from "../components/Model";
 
 const Result = () => {
-  const { state: { similarity } } = useLocation()
+  const { state: { similarity,image_gen } } = useLocation()
 
   return (
     <div className="my-20">
@@ -38,6 +38,7 @@ const Result = () => {
             </div>
           </div>
         </div>
+        {image_gen &&(
         <div className="mt-20">
           <h1 className="text-xl font-bold my-2">Similarities</h1>
           <div className="grid grid-cols-1 gap-5">
@@ -49,6 +50,7 @@ const Result = () => {
             ))}
           </div>
         </div>
+        )}
       </main>
     </div>
   );
