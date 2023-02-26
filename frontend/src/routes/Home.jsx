@@ -67,7 +67,7 @@ const Home = () => {
 
   return (
     <div>
-      <main className="max-w-xl mx-auto mt-36">
+      <main className="max-w-xl mx-auto my-20">
         <div className="flex justify-center">
           <ClipLoader loading={loading} />
         </div>
