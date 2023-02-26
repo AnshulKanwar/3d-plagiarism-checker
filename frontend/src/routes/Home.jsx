@@ -67,7 +67,7 @@ const Home = () => {
             </div>
           </div>
         )}
-        <div className="text-center text-slate-600">
+        <div className="text-center text-slate-600 font-semibold">
           Upload two .obj files below and our algorithm will tell you if the 3d
           Model has been plagiarized
         </div>

@@ -12,12 +12,21 @@ const Navbar = () => {
           <NavLink to="/">Placky</NavLink>
         </h1>
       </div>
-      <div className="flex gap-10">
+      <div className="flex gap-10 items-center">
         <span>
-          <NavLink to="/working" className="hover:underline">How we did it?</NavLink>
+          <NavLink to="/working" className="hover:underline">
+            How we did it?
+          </NavLink>
         </span>
+        <span>Made with ❤️ by bit.fy</span>
         <span>
-          Made with ❤️ by bit.fy
+          <a
+            href="https://github.com/AnshulKanwar/3d-plagiarism-checker"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="/github.svg" alt="github" width={20} />
+          </a>
         </span>
       </div>
     </div>
