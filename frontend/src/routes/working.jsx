@@ -7,7 +7,7 @@ const Working = () => {
       <Container>
         <p>
           The geometric relation among points expresses their spatial position
-          concerning each other, further reflecting their underlying shape. CNN
+          concerning each other, further reflecting their underlying shape. KNN
           has demonstrated its abstraction capability for 2D images that are in
           the format of a regular grid. Aligning the point clouds is necessary
           as it will help us efficiently compute the similarity between two
