@@ -5,6 +5,7 @@ import "./index.css";
 import Root from "./routes/Root";
 import Home from "./routes/Home";
 import Result from "./routes/Result";
+import Working from "./routes/working";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/result/:similarity",
         element: <Result />,
+      },
+      {
+        path: "/working",
+        element: <Working />,
       },
     ],
   },
