@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ClipLoader } from "react-spinners"
 import Container from "../components/Container";
 import axios from "axios";
 
@@ -9,6 +10,7 @@ const Home = () => {
   const [orignalMtl, setOrignalMtl] = useState(null);
   const [secondMtl, setSecondMtl] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
