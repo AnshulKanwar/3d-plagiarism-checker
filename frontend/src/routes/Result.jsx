@@ -5,7 +5,7 @@ import model1 from "../../../backend/uploads/model1.obj";
 import model2 from "../../../backend/uploads/model2.obj";
 
 const Result = () => {
-  const { similarity } = useLocation();
+  const { state: { similarity } } = useLocation()
 
   return (
     <div className="my-20">

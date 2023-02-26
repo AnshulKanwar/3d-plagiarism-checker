@@ -36,6 +36,8 @@ const Home = () => {
       setError(response.data.error);
       return;
     }
+
+    console.log(response)
     const { similarity } = response.data;
 
     navigate(`/result`, { state: { similarity }});
