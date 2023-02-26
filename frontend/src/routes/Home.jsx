@@ -22,8 +22,8 @@ const Home = () => {
       {
         file1: originalFile,
         file2: secondFile,
-        mtl1: orignalMtl,
-        mtl2: secondMtl,
+        // mtl1: orignalMtl,
+        // mtl2: secondMtl,
       },
       {
         headers: {
@@ -88,10 +88,10 @@ const Home = () => {
             <input type="file" onChange={handleOriginalFile} />
             <label>Second File: </label>
             <input type="file" onChange={handleSecondFile} />
-            <label>Orignal mtl:</label>
+            {/* <label>Orignal mtl:</label>
             <input type="file" onChange={handleOrignalMtl}></input>
             <label>Second Mtl: </label>
-            <input type= "file" onChange={handleSecondMtl} />
+            <input type= "file" onChange={handleSecondMtl} /> */}
             <button
               type="submit"
               className="col-span-2 bg-blue-600 text-white rounded-md p-3"

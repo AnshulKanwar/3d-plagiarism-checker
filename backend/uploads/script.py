@@ -41,8 +41,6 @@ def main(model,path):
         bpy.ops.object.delete()
 
     obj = bpy.ops.import_scene.obj(filepath=model)
-    bpy.context.view_layer.objects.active = obj
-    bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='BOUNDS')
     camera = bpy.data.objects['Camera']
     
     for dir in ["top", "bottom", "front", "back", "right", "left"]:

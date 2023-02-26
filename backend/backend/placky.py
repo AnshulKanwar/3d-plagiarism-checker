@@ -38,3 +38,7 @@ def similarity():
     os.system("blender -b -P uploads/script.py")
     result = ml.delay().get()
     return jsonify(similarity=result)
+
+@bp.route('/uploads/<filename>')
+def download_file(filename):
+    return send_from_directory("../uploads", filename, as_attachment=True)
