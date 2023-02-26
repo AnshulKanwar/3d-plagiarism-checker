@@ -3,9 +3,19 @@ import Container from "../components/Container";
 import Scene from "../components/Model";
 import model1 from "../../../backend/uploads/model1.obj";
 import model2 from "../../../backend/uploads/model2.obj";
+import { useEffect, useState } from "react";
 
 const Result = () => {
+  const [mounted, setMounted] = useState(false)
   const { state: { similarity } } = useLocation()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <div className="my-20">
