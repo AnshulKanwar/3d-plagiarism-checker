@@ -16,7 +16,7 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("making post")
     const response = await axios.post(
       "http://127.0.0.1:5000/",
       {
@@ -39,6 +39,7 @@ const Home = () => {
 
     console.log(response)
     const { similarity } = response.data;
+    console.log(similarity)
 
     navigate(`/result`, { state: { similarity }});
   };
