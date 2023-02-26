@@ -7,8 +7,6 @@ import axios from "axios";
 const Home = () => {
   const [originalFile, setOriginalFile] = useState(null);
   const [secondFile, setSecondFile] = useState(null);
-  const [orignalMtl, setOrignalMtl] = useState(null);
-  const [secondMtl, setSecondMtl] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -23,8 +21,6 @@ const Home = () => {
       {
         file1: originalFile,
         file2: secondFile,
-        // mtl1: orignalMtl,
-        // mtl2: secondMtl,
       },
       {
         headers: {
@@ -38,9 +34,7 @@ const Home = () => {
       return;
     }
 
-    console.log(response);
     const { similarity, image_gen } = response.data;
-    console.log(similarity);
     setLoading(false);
     navigate(`/result`, { state: { similarity, image_gen } });
   };
@@ -57,27 +51,19 @@ const Home = () => {
     }
   };
 
-  const handleOrignalMtl = (e) => {
-    if (e.target.files) {
-      setOrignalMtl(e.target.files[0]);
-    }
-  };
-
-  const handleSecondMtl = (e) => {
-    if (e.target.files) {
-      setSecondMtl(e.target.files[0]);
-    }
-  };
-
   return (
     <div>
-      <main className="max-w-xl mx-auto my-20">
+      <main className="max-w-xl mx-auto my-16">
         <div className="flex justify-center">
           <BounceLoader loading={loading} color="#2563EB" />
         </div>
+        <div className="text-center mb-10">
+          <h1 className="text-6xl font-bold">Placky</h1>
+          <h2 className="text-lg">Plagiarism Checker for 3D Objects</h2>
+        </div>
         <div className="text-center text-slate-600">
           Upload two .obj files below and our algorithm will tell you if the 3d
-          Model has been plagiarised
+          Model has been plagiarized
         </div>
         <Container>
           {error && (
