@@ -1,21 +1,9 @@
 import { useLocation } from "react-router-dom";
 import Container from "../components/Container";
 import Scene from "../components/Model";
-import model1 from "../../../backend/uploads/model1.obj";
-import model2 from "../../../backend/uploads/model2.obj";
-import { useEffect, useState } from "react";
 
 const Result = () => {
-  const [mounted, setMounted] = useState(false)
   const { state: { similarity } } = useLocation()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
 
   return (
     <div className="my-20">
@@ -40,13 +28,13 @@ const Result = () => {
           <div className="text-center">
             <span className="font-bold text-lg">Original</span>
             <div className="rounded-md overflow-hidden">
-              <Scene model={model1} />
+              <Scene model={"http://127.0.0.1:5000/uploads/model1.obj"} />
             </div>
           </div>
           <div className="text-center">
             <span className="font-bold text-lg">Second</span>
             <div className="rounded-md overflow-hidden">
-              <Scene model={model2} />
+              <Scene model={"http://127.0.0.1:5000/uploads/model2.obj"} />
             </div>
           </div>
         </div>
