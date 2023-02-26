@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BounceLoader } from "react-spinners"
+import { BounceLoader } from "react-spinners";
 import Container from "../components/Container";
 import axios from "axios";
 
@@ -16,8 +16,8 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("making post")
-    setLoading(true)
+    console.log("making post");
+    setLoading(true);
     const response = await axios.post(
       "http://127.0.0.1:5000/",
       {
@@ -38,11 +38,11 @@ const Home = () => {
       return;
     }
 
-    console.log(response)
-    const { similarity,image_gen } = response.data;
-    console.log(similarity)
-    setLoading(false)
-    navigate(`/result`, { state: { similarity,image_gen }});
+    console.log(response);
+    const { similarity, image_gen } = response.data;
+    console.log(similarity);
+    setLoading(false);
+    navigate(`/result`, { state: { similarity, image_gen } });
   };
 
   const handleOriginalFile = (e) => {
@@ -73,7 +73,7 @@ const Home = () => {
     <div>
       <main className="max-w-xl mx-auto my-20">
         <div className="flex justify-center">
-          <BounceLoader loading={loading} color="#2563EB"/>
+          <BounceLoader loading={loading} color="#2563EB" />
         </div>
         <div className="text-center text-slate-600">
           Upload two .obj files below and our algorithm will tell you if the 3d
@@ -87,13 +87,28 @@ const Home = () => {
           )}
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-5">
             <label>Original File: </label>
-            <input type="file" onChange={handleOriginalFile} />
+            <input
+              type="file"
+              onChange={handleOriginalFile}
+              className="
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-blue-50 file:text-blue-700
+            hover:file:bg-blue-100"
+            />
             <label>Second File: </label>
-            <input type="file" onChange={handleSecondFile} />
-            {/* <label>Orignal mtl:</label>
-            <input type="file" onChange={handleOrignalMtl}></input>
-            <label>Second Mtl: </label>
-            <input type= "file" onChange={handleSecondMtl} /> */}
+            <input
+              type="file"
+              onChange={handleSecondFile}
+              className="
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-blue-50 file:text-blue-700
+            hover:file:bg-blue-100
+            "
+            />
             <button
               type="submit"
               className="col-span-2 bg-blue-600 text-white rounded-md p-3"
