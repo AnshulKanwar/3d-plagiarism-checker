@@ -1,8 +1,8 @@
 from flask import (
-    Blueprint, jsonify, send_from_directory
+    Blueprint, jsonify, send_from_directory,request
 )
 import os
-
+from tasks import ml 
 bp = Blueprint('placky', __name__, url_prefix='/')
 
 ALLOWED_EXTENSIONS = ("obj", )
@@ -29,7 +29,7 @@ def similarity():
         return jsonify(error="Obj file not provided")
     os.system("blender -b -P uploads/script.py")
     result = ml.delay().get()
-    return jsonify(similarity=similarity)
+    return jsonify(similarity=result)
 
 @bp.route('/uploads/<filename>')
 def download_file(filename):
