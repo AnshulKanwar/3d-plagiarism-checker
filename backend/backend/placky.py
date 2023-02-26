@@ -32,5 +32,9 @@ def similarity():
     return jsonify(similarity=result)
 
 @bp.route('/uploads/<filename>')
-def download_file(filename):
+def download_models(filename):
     return send_from_directory("../uploads", filename, as_attachment=True)
+
+@bp.route('/results/<filename>')
+def download_images(filename):
+    return send_from_directory("../results", filename, as_attachment=True)
