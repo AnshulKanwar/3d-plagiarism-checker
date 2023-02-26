@@ -80,8 +80,8 @@ const Home = () => {
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
             file:text-sm file:font-semibold
-            file:bg-blue-50 file:text-blue-700
-            hover:file:bg-blue-100"
+            file:bg-violet-50 file:text-violet-700
+            hover:file:bg-violet-100"
             />
             <label>Second File: </label>
             <input
@@ -91,13 +91,15 @@ const Home = () => {
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
             file:text-sm file:font-semibold
-            file:bg-blue-50 file:text-blue-700
-            hover:file:bg-blue-100
+            file:bg-violet-50 file:text-violet-700
+            hover:file:bg-violet-100
             "
             />
             <button
               type="submit"
-              className="col-span-2 bg-blue-600 text-white rounded-md p-3"
+              className="col-span-2 bg-blue-600 text-white rounded-md p-3
+              bg-gradient-to-r from-indigo-300 to-purple-400
+              "
             >
               Check for Plagiarism
             </button>

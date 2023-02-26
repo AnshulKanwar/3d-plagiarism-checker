@@ -2,7 +2,11 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between py-5 px-20 bg-blue-600 text-white items-center">
+    <div
+      className="flex justify-between py-5 px-20 items-center
+    bg-gradient-to-r from-indigo-300 to-purple-400
+    "
+    >
       <div>
         <h1 className="text-3xl font-bold">
           <NavLink to="/">Placky</NavLink>
