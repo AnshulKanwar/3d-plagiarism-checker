@@ -1,23 +1,15 @@
 from flask import (
-    Blueprint, request, jsonify,render_template,send_from_directory
+    Blueprint, jsonify, send_from_directory
 )
-from tasks import ml
 import os
 
 bp = Blueprint('placky', __name__, url_prefix='/')
 
 ALLOWED_EXTENSIONS = ("obj", )
 
-
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-# @bp.route("/test", methods=('GET',))
-# def run():
-#     result = ml.delay().get()
-#     return render_template('index.html', result=result)
-
 
 @bp.route("/", methods=('POST', ))
 def similarity():
@@ -37,7 +29,7 @@ def similarity():
         return jsonify(error="Obj file not provided")
     os.system("blender -b -P uploads/script.py")
     result = ml.delay().get()
-    return jsonify(similarity=result)
+    return jsonify(similarity=similarity)
 
 @bp.route('/uploads/<filename>')
 def download_file(filename):
