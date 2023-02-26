@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <div
-      className="flex justify-between py-5 px-20 items-center
+      className="flex justify-between py-5 px-20 items-center text-white
     bg-gradient-to-r from-indigo-300 to-purple-400
     "
     >

@@ -58,7 +58,7 @@ const Home = () => {
           <BounceLoader loading={loading} color="#2563EB" />
         </div>
         <div className="text-center mb-10">
-          <h1 className="text-6xl font-bold">Placky</h1>
+          <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-400">Placky</h1>
           <h2 className="text-lg">Plagiarism Checker for 3D Objects</h2>
         </div>
         <div className="text-center text-slate-600">
