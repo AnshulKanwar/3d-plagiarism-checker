@@ -1,6 +1,6 @@
 import bpy
 import math
-import open3d as o3d
+# import open3d as o3d
 import numpy as np
 
 def align_camera(camera, dir):    
@@ -24,15 +24,23 @@ def align_camera(camera, dir):
         camera.location = (-distance, 0, 0)
         camera.rotation_euler = (0, math.radians(-90), 0)
 
-def take_snapshot(filename):
-    bpy.context.scene.render.filepath = f"./images/{filename}"
+def take_snapshot(filename,path):
+    bpy.context.scene.render.filepath = f"./{path}/{filename}"
     bpy.ops.render.render(write_still=True)
     
-def main():
-    bpy.data.objects['Cube'].select_set(True)
+def main(model,path):
+    if bpy.data.objects.get('Cube'):
+        bpy.data.objects['Cube'].select_set(True)
+        bpy.ops.object.delete()
     bpy.ops.object.delete()
+    if bpy.data.objects.get('model1'):
+        bpy.data.objects['model1'].select_set(True)
+        bpy.ops.object.delete()
+    if bpy.data.objects.get('model2'):
+        bpy.data.objects['model2'].select_set(True)
+        bpy.ops.object.delete()
 
-    # obj1 = bpy.ops.import_scene.obj(filepath="model1.obj")
+    obj = bpy.ops.import_scene.obj(filepath=model)
     # mesh = o3d.io.read_triangle_mesh(obj1)
     # vertices = np.asarray(mesh.vertices)
     # centroid = np.mean(vertices, axis=0)
@@ -45,6 +53,10 @@ def main():
     
     for dir in ["top", "bottom", "front", "back", "right", "left"]:
         align_camera(camera, dir)
-        take_snapshot(f"{dir}.png")
+        take_snapshot(f"{dir}.png",path)
 
-main()
+def mainmain():
+    main("./uploads/model1.obj","./images_model_1")
+    main("./uploads/model2.obj","./images_model_2")
+
+mainmain()
